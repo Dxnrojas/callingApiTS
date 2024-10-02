@@ -53,8 +53,8 @@ class AppContainer extends HTMLElement {
         if (container) {
             container.innerHTML = ""; // Limpiar el contenedor antes de añadir los personajes
             characters.forEach((character: any) => {
-                
-                const characterElement = document.createElement('character-data') as CharacterData;
+            
+                const characterElement = new CharacterData();
                 characterElement.setAttribute('image', character.image);
                 characterElement.setAttribute('name', character.name);
                 characterElement.setAttribute('status', character.status);
