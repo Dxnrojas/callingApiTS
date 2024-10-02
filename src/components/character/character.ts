@@ -1,43 +1,49 @@
 export enum Attribute {
-    'image' = 'image',
-    'name' = 'name',
-    'status' = 'status',
-    'species' = 'species',
-    'type' = 'type',
-    'origin' = 'origin',
-    'episode' = 'episode'
+  "image" = "image",
+  "name" = "name",
+  "status" = "status",
+  "species" = "species",
+  "type" = "type",
+  "origin" = "origin",
+  "episode" = "episode",
 }
 
 class CharacterData extends HTMLElement {
-    image?: string;
-    name?: string;
-    status?: string;
-    species?: string;
-    type?: string;
-    origin?: { name: string };
-    episode?: string[];
+  image?: string;
+  name?: string;
+  status?: string;
+  species?: string;
+  type?: string;
+  origin?: string;
+  episode?: string;
 
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
 
-    static get observedAttributes() {
-        return Object.keys(Attribute);
-    }
+  static get observedAttributes() {
+    return Object.keys(Attribute);
+  }
 
-    attributeChangeCallback(propName: Attribute, oldValue: string | undefined, newValue: string | undefined){
-        this[propName] = newValue;
-        this.render();
-    }
+  attributeChangedCallback(
+    propName: Attribute,
+    oldValue: string | undefined,
+    newValue: string | undefined
+  ) {
+    this[propName] = newValue;
+    this.render();
+  }
 
-    connectedCallback(){
-        this.render();
-    }
+  connectedCallback() {
+    this.render();
+    console.log("holaaa");
+    
+  }
 
-    render(){
-        if (this.shadowRoot){
-            this.shadowRoot.innerHTML=`
+  render() {
+    if (this.shadowRoot) {
+      this.shadowRoot.innerHTML = `
             <article>
                 <img src='${this.image}'/>
                 <h2>${this.name}</h2>
@@ -45,11 +51,11 @@ class CharacterData extends HTMLElement {
                 <p>Specie: ${this.species}</p>
                 <p>Type: ${this.type}</p>
                 <p>Origin: ${this.origin}</p>
-                <p>First Episode: ${this.episode}</p>
+                <p>Episode: ${this.episode}</p>
             </article>
-            `
-        }
+            `;
     }
+  }
 }
-customElements.define('character-data', CharacterData);
-export default CharacterData
+customElements.define("character-data", CharacterData);
+export default CharacterData;

@@ -1,1 +1,1 @@
-export {default as Workers} from "./character/character"
+export {default as CharacterData} from "./character/character"
