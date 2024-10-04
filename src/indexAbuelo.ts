@@ -3,6 +3,8 @@ import CharacterData, {Attribute} from "./components/character/character";
 import { charactersRickMorty } from './service/dataFetch';
 
 class AppContainer extends HTMLElement {
+    characters: any= [];
+
     constructor() {
         super();
         this.attachShadow({mode: 'open'});
@@ -10,23 +12,29 @@ class AppContainer extends HTMLElement {
 
     connectedCallback() {
         this.render();
-        this.attachListeners(); 
+        this.attachListeners(); //Se necesita poner el attachListeners() para que se ejecute el evento de click 
     }
     
+    //Se crea un metodo para renderizar los personajes segun la cantidad que el usuario ingrese
     attachListeners() {
-        const button = this.shadowRoot?.querySelector("button");
-        const input = this.shadowRoot?.querySelector("input");
-
-        console.log('Listeners attached');
+        const button = this.shadowRoot?.querySelector("button"); //Se crea el boton
+        const input = this.shadowRoot?.querySelector("input"); //Se crea el input
 
         button?.addEventListener("click", async () => {
 
-            const count = input ? parseInt((input as HTMLInputElement).value, 10) : 0;
+            const count = input ? parseInt((input as HTMLInputElement).value, 10) : 0; //Operador ternario para verificar si el input existe y si es un número
+            //Se hace una aseveración de tipo enecesaria en TS que indica que estamos tratando el input como un elemento de tipo HTMLInputElement para que nos deje acceder a las propiedades como value
+            //Se hace un parseInt para convertir el valor del input a un número entero
 
+            //Validamos que el input no sea 0 y si es 0 se le hace un alert 
             if (count > 0) {
-                const data = await charactersRickMorty(); // Traemos todos los personajes 
+                for (let index = 1; index <  count; index++) {
+                    const data = await charactersRickMorty(index); // Traemos todos los personajes 
+                    this.characters.push(data); //Se agrega el personaje al arreglo de personajes
+                }
                 
-                this.renderCharacters(data.results.slice(0, count)); // Renderizamos sólo la cantidad solicitada
+                this.renderCharacters(this.characters); // data.results es un arreglo de personajes obbtenidos. 
+                //El primer argumento es el primer elemento del arreglo en posiicon 0 y el segundo argumento es la cantidad de personajes que queremos mostrar
             } else {
                 alert('Por favor, ingrese un número mayor a 0');
             }
@@ -44,11 +52,11 @@ class AppContainer extends HTMLElement {
             `;
         }
     }
-
-    renderCharacters(characters: any[]) {
+//Metodo para renderizar los personajes
+    renderCharacters(characters: any[]) { 
         const container = this.shadowRoot?.querySelector("#characters-container");
         if (container) {
-            container.innerHTML = ""; // Limpiar el contenedor antes de añadir los personajes
+            container.innerHTML = ""; 
             characters.forEach((character: any) => {
             
                 const characterElement = new CharacterData();
@@ -62,8 +70,6 @@ class AppContainer extends HTMLElement {
                 container.appendChild(characterElement);
             });
         }
-        console.log(`Characters rendered: ${characters}`); // Verifica cuántos personajes se están renderizando
-
     }
 }
 

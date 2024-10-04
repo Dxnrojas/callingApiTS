@@ -38,7 +38,6 @@ class CharacterData extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    console.log("holaaa");
     
   }
 

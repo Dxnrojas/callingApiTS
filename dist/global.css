@@ -32,8 +32,7 @@
 }
 
 .button-character:hover {
-  background-color: #ecf8ff; /* Efecto hover */
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+  background-color: #24adfc;; /* Efecto hover */
 }
 
 #characters-container {
