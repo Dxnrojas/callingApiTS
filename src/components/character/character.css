@@ -1,0 +1,35 @@
+article {
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  max-width: 250px;
+  text-align: center;
+}
+
+article:hover {
+  transform: translateY(-10px); /* Efecto hover: levanta la card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra en hover */
+}
+
+.profilePic {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.txt {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}

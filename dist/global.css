@@ -1,0 +1,48 @@
+* {
+  margin: 1rem;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Mulish", sans-serif;
+}
+
+.input-character {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.input-character:focus {
+  border-color: #ecf8ff; /* Cambia de color cuando el input está activo */
+}
+
+.button-character {
+  padding: 10px 20px;
+  background-color: #49bcff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-character:hover {
+  background-color: #ecf8ff; /* Efecto hover */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+#characters-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+  gap: 20px; /* Espacio entre las cards */
+  padding: 20px;
+  justify-items: center;
+}
+
+
+

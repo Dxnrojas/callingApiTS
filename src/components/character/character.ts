@@ -1,3 +1,4 @@
+import styles from'./Character.css';
 export enum Attribute {
   "image" = "image",
   "name" = "name",
@@ -45,16 +46,20 @@ class CharacterData extends HTMLElement {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
             <article>
-                <img src='${this.image}'/>
-                <h2>${this.name}</h2>
-                <p>Status: ${this.status}</p>
-                <p>Specie: ${this.species}</p>
-                <p>Type: ${this.type}</p>
-                <p>Origin: ${this.origin}</p>
-                <p>Episode: ${this.episode}</p>
+            <link rel="stylesheet" href="../src/components/character/character.css"/>
+                <img class='profilePic' src='${this.image}'/>
+                <h2 class='title'>${this.name}</h2>
+                <p class='txt'><strong>Status:</strong> ${this.status}</p>
+                <p class='txt'> <strong>Specie: </strong> ${this.species}</p>
+                <p class='txt'><strong>Type: </strong>${this.type}</p>
+                <p class='txt'><strong>Origin: </strong> ${this.origin}</p>
+                <p class='txt'><strong>Episode: </strong> ${this.episode}</p>
             </article>
             `;
     }
+    const cssCard = this.ownerDocument.createElement('style');
+            cssCard.innerHTML = styles;
+            this.shadowRoot?.appendChild(cssCard);
   }
 }
 customElements.define("character-data", CharacterData);
